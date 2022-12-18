@@ -15,8 +15,13 @@
 int main(int ac, char **av)
 {
 	if (check_args(ac))
+	{
 		if (check_file(av[1]))
+		{
 			handle_file(av[1]);
+		}
+	}
+	free_dlistint(front);
 	return (0);
 }
 
@@ -31,7 +36,7 @@ int check_args(int ac)
 	error_t *err = malloc(sizeof(error_t));
 
 	if (!err)
-		return (0);
+		malloc_error();
 	if (ac != 2)
 	{
 		err->code = USAGE_ERROR;
@@ -39,6 +44,8 @@ int check_args(int ac)
 		err->exit_code = EXIT_FAILURE;
 		print_err(err);
 	}
+	if (err)
+		free(err);
 	return (1);
 }
 
@@ -52,8 +59,11 @@ int check_file(char *file_path)
 {
 	error_t *err = malloc(sizeof(error_t));
 
+	if (!err)
+		malloc_error();
 	if (open(file_path, O_RDONLY) > 0)
 	{
+		free(err);
 		return (1);
 	}
 	else
@@ -63,6 +73,7 @@ int check_file(char *file_path)
 		err->exit_code = EXIT_FAILURE;
 		err->file = file_path;
 		print_err(err);
+		free(err);
 	}
 	return (0);
 }
@@ -85,11 +96,11 @@ void handle_file(char *file_path)
 	{
 		l_no++;
 		args = parse_line(buf);
-		process_args(args, l_no, front);
-			/* print error */
-		free_pp((void **) args);
+		if (process_args(args, l_no, front))
+			free_pp((void **) args);
 	}
 	free(buf);
+	fclose(stream);
 }
 
 /**
@@ -99,18 +110,17 @@ void handle_file(char *file_path)
  * @front: the front node in list
  */
 
-void process_args(char **args, unsigned int l_no, stack_t *front)
+int process_args(char **args, unsigned int l_no, stack_t *front)
 {
 	int i, size;
 	size_t ac;
-	stack_t *new_node;
+	stack_t *new_node = NULL;
 	instruction_t inst[] = {
 		{"pall", pall},
 		{"push", push}
 	};
 
 	ac = count(args);
-	printf("args count: %lu\n", ac);
 	if (ac == 0)
 		invalid_inst("", l_no);
 	if (ac > 1)
@@ -133,10 +143,14 @@ void process_args(char **args, unsigned int l_no, stack_t *front)
 			{
 				inst[i].f(&front, l_no);
 			}
-			return;
+			if (new_node)
+				free(new_node);
+			return (1);
 		}
 	}
+	free(new_node);
 	invalid_inst(args[0], l_no);
+	return (1);
 }
 
 

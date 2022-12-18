@@ -1,2 +1,3 @@
-   push    8    
-pall 3
+pall
+push 3
+pall

@@ -48,7 +48,7 @@ char **split_words(char *line, const char *sep)
 
 		words[new_size - 1] = NULL;
 	}
-
+	free(line);
 	return (words);
 }
 
@@ -163,6 +163,7 @@ char *rem_space(char *s)
 		if (len > 0)
 			len--;
 	}
+	free(s);
 	return (o);
 }
 

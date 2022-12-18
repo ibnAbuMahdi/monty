@@ -77,7 +77,7 @@ void pall(stack_t **, unsigned int);
 void push(stack_t **, unsigned int);
 
 /* main.c */
-void process_args(char **, unsigned int, stack_t *);
+int process_args(char **, unsigned int, stack_t *);
 
 #include "lists.h"
 

@@ -11,6 +11,8 @@
 
 void print_err(error_t *error)
 {
+	int code = error->exit_code;
+
 	switch (error->code)
 	{
 
@@ -20,8 +22,8 @@ void print_err(error_t *error)
 		case USAGE_ERROR:
 			fprintf(stderr, "%s\n", error->msg);
 	}
-	exit(error->exit_code);
-	free(error->msg);
+	free(error);
+	exit(code);
 
 }
 

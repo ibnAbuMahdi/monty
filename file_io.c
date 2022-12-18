@@ -60,10 +60,12 @@ size_t getline(char **line, size_t *n, FILE *file)
 
 char **parse_line(char *line)
 {
+	char *new_line = _strdup(line);
+
 	if (!line)
 		return (NULL);
-	line = rem_space(line);
-	return (split_words(line, " \t\n"));
+	new_line = rem_space(new_line);
+	return (split_words(new_line, " \t\n"));
 }
 
 
