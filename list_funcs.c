@@ -45,3 +45,19 @@ void pint(stack_t **node, unsigned int lno)
 	else
 		fprintf(stderr, "L%u: can't pint, stack empty", lno);
 }
+
+/**
+ * pop - pops node from list
+ * @node: the node
+ * @lno: line number
+ */
+
+void pop(stack_t **node, unsigned int lno)
+{
+	(void) node;
+
+	if (front)
+		pop_dlistint(&front);
+	else
+		fprintf(stderr, "L%u: can't pop an empty stack", lno);
+}
