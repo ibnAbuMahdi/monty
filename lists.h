@@ -18,6 +18,8 @@ void free_dlistint2(stack_t **);
 
 int pop_dlistint(stack_t **);
 
+void swap_dlistint(stack_t **);
+
 stack_t *get_dnodeint_at_index(stack_t *, unsigned int);
 
 int sum_dlistint(stack_t *);

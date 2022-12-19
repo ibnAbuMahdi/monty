@@ -107,6 +107,7 @@ void handle_file(char *file_path)
  * @args: the args
  * @l_no: line number
  * @front: the front node in list
+ * Return: 1 always
  */
 
 int process_args(char **args, unsigned int l_no, stack_t *front)
@@ -114,11 +115,8 @@ int process_args(char **args, unsigned int l_no, stack_t *front)
 	int i, size;
 	size_t ac;
 	stack_t *new_node = NULL;
-	instruction_t inst[] = {
-		{"pall", pall},
-		{"push", push},
-		{"pint", pint}
-	};
+	instruction_t inst[] = {{"pall", pall}, {"push", push}, {"pint", pint},
+		{"pop", pop}, {"swap", swap}};
 
 	ac = count(args);
 	if (ac == 0)

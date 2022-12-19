@@ -27,3 +27,21 @@ int pop_dlistint(stack_t **head)
 	}
 	return (i);
 }
+
+/**
+ * swap_dlistint - swap top two nodes
+ * @head: the head node
+ */
+
+void swap_dlistint(stack_t **head)
+{
+	stack_t *temp = NULL;
+
+	temp = (*head)->next;
+	temp->next->prev = *head;
+	(*head)->next = temp->next;
+	temp->next = *head;
+	temp->prev = NULL;
+	(*head)->prev = temp;
+	*head = temp;
+}

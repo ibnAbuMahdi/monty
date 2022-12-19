@@ -61,3 +61,21 @@ void pop(stack_t **node, unsigned int lno)
 	else
 		fprintf(stderr, "L%u: can't pop an empty stack", lno);
 }
+
+/**
+ *
+ */
+
+void swap(stack_t **node, unsigned int lno)
+{
+	(void) node;
+
+	if (dlistint_len(front) > 1)
+		swap_dlistint(&front);
+	else
+		fprintf(stderr, "L%u: can't swap, stack too short", lno);
+}
+
+
+
+
