@@ -2,7 +2,7 @@
 #include "general.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "stddef.h"
+#include <stddef.h>
 
 /**
  * getline - gets a line from stream file
@@ -22,7 +22,7 @@ size_t getline(char **line, size_t *n, FILE *file)
 	{
 		*line = malloc(120);
 		if (!line)
-			return (0);
+			malloc_error();
 	}
 	if (!(*n))
 		*n = 120;

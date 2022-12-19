@@ -1,4 +1,4 @@
-#include "text.h"
+#include "monty.h"
 
 /**
  * _strlen - Return the length of a string
@@ -80,7 +80,7 @@ char *_strdup(char *str)
 	size = _strlen(str) + 1;
 	dest = malloc(size * sizeof(char));
 	if (dest == NULL)
-		return (NULL);
+		malloc_error();
 
 	for (i = 0; i < size; i++)
 		*(dest + i) = *(str + i);

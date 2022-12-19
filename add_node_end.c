@@ -23,6 +23,8 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 				temp1 = temp1->next;
 		}
 		temp = malloc(sizeof(stack_t));
+		if (!temp)
+			malloc_error();
 		if (temp)
 		{
 			temp->next = NULL;

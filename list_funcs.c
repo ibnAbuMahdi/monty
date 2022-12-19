@@ -1,5 +1,4 @@
 #include "monty.h"
-#include "general.h"
 #include <stdio.h>
 #include <stdlib.h>
 

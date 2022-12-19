@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include "general.h"
 #include "monty.h"
 
 /**
@@ -23,7 +22,7 @@ void *_realloc(void *ptr, size_t old_size, size_t new_size)
 	{
 		s = malloc(new_size);
 		if (s == NULL)
-			return (NULL);
+			malloc_error();
 
 		return (s);
 	}
@@ -36,7 +35,7 @@ void *_realloc(void *ptr, size_t old_size, size_t new_size)
 
 	s = malloc(new_size);
 	if (s == NULL)
-		return (NULL);
+		malloc_error();
 
 	aux = ptr;
 	for (a = 0; a < old_size; a++)

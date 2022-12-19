@@ -1,5 +1,4 @@
-#include "general.h"
-#include "text.h"
+#include "monty.h"
 
 /**
  * digits - Cout the numbe of digits of a number
@@ -32,6 +31,8 @@ char *to_string(int number)
 
 	n_digits = digits(number);
 	_number = malloc(n_digits * sizeof(char) + 2);
+	if (!_number)
+		malloc_error();
 	if (number == 0)
 	{
 		_number[0] = '0';

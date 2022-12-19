@@ -1,4 +1,4 @@
-#include "text.h"
+#include "monty.h"
 
 /**
  * split_words - Split a line into words
@@ -15,6 +15,8 @@ char **split_words(char *line, const char *sep)
 
 	old_size = sizeof(char *);
 	words = malloc(old_size);
+	if (!words)
+		malloc_error();
 	if (words != NULL)
 	{
 		new_size = 1;
@@ -27,17 +29,15 @@ char **split_words(char *line, const char *sep)
 			old_size = (new_size + 1) * sizeof(char *);
 			if (tmp == NULL)
 				break;
-
 			words = tmp;
 			++new_size;
-
 			words[new_size - 2] = malloc(_strlen(token) + 1);
-			if (words == NULL)
+			if (words[new_size - 2] == NULL)
 			{
 				free(words);
 				free(tmp);
+				malloc_error();
 			}
-
 			if (words[new_size - 2] != NULL)
 				_strcpy(words[new_size - 2], token);
 
@@ -92,7 +92,7 @@ char *join_words(char *word1, char *word2, char *word3, const char *sep)
 
 	aux = malloc(size_str1 + size_str2 + size_sep + size_str3 + size_sep + 2);
 	if (aux == NULL)
-		return (NULL);
+		malloc_error();
 
 	aux = _strcpy(aux, word1);
 	aux = _strcat(aux, (char *)sep);
@@ -136,7 +136,7 @@ char *rem_space(char *s)
 		return (NULL);
 	o = malloc(_strlen(s) + 1);
 	if (!o)
-		return (s);
+		malloc_error();
 	while (s[i])
 	{
 		if (s[i] != ' ' && s[i] != '\t' && !start)

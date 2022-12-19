@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "monty.h"
-#include "general.h"
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
