@@ -67,6 +67,8 @@ typedef struct error_s
 	int line_number;
 } error_t;
 
+# define _POSIX_C_SOURCE 200809L
+
 /* print.c */
 void print_err(error_t *);
 void malloc_error();
