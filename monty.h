@@ -75,6 +75,7 @@ void invalid_inst(char *, unsigned int);
 /* list_funcs.c */
 void pall(stack_t **, unsigned int);
 void push(stack_t **, unsigned int);
+void pint(stack_t **, unsigned int);
 
 /* main.c */
 int process_args(char **, unsigned int, stack_t *);

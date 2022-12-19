@@ -116,7 +116,8 @@ int process_args(char **args, unsigned int l_no, stack_t *front)
 	stack_t *new_node = NULL;
 	instruction_t inst[] = {
 		{"pall", pall},
-		{"push", push}
+		{"push", push},
+		{"pint", pint}
 	};
 
 	ac = count(args);

@@ -29,3 +29,19 @@ void pall(stack_t **node, unsigned int lno)
 	if (*node)
 		print_dlistint(front);
 }
+
+/**
+ * pint - prints int at top of stack
+ * @node: top node
+ * @lno: the line number
+ */
+
+void pint(stack_t **node, unsigned int lno)
+{
+	(void) node;
+
+	if (front)
+		printf("%d\n", front->n);
+	else
+		fprintf(stderr, "L%u: can't pint, stack empty", lno);
+}
