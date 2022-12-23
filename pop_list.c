@@ -38,7 +38,8 @@ void swap_dlistint(stack_t **head)
 	stack_t *temp = NULL;
 
 	temp = (*head)->next;
-	temp->next->prev = *head;
+	if (temp->next)
+		temp->next->prev = *head;
 	(*head)->next = temp->next;
 	temp->next = *head;
 	temp->prev = NULL;
