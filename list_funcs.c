@@ -51,7 +51,7 @@ void pint(stack_t **node, unsigned int lno)
 	}
 	else
 	{
-		fprintf(stderr, "L%u: can't pint, stack empty", lno);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", lno);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -72,7 +72,7 @@ void pop(stack_t **node, unsigned int lno)
 	}
 	else
 	{
-		fprintf(stderr, "L%u: can't pop an empty stack", lno);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", lno);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -93,7 +93,7 @@ void swap(stack_t **node, unsigned int lno)
 	}
 	else
 	{
-		fprintf(stderr, "L%u: can't swap, stack too short", lno);
+		fprintf(stderr, "L%u: can't swap, stack too short\n", lno);
 		exit(EXIT_FAILURE);
 	}
 }
