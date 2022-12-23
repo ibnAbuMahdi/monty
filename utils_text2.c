@@ -58,7 +58,7 @@ char *to_string(int number)
  */
 int is_numerical(unsigned int n)
 {
-	return (n >= '0' && n <= '9');
+	return (n == '+' || n == '-' || (n >= '0' && n <= '9'));
 }
 
 /**
