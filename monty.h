@@ -81,8 +81,13 @@ void pint(stack_t **, unsigned int);
 void pop(stack_t **, unsigned int);
 void swap(stack_t **, unsigned int);
 
+/* list_func_1.c */
+int get_func(char **, unsigned int);
+void nop(stack_t **, unsigned int);
+void add (stack_t **, unsigned int);
+
 /* main.c */
-int process_args(char **, unsigned int, stack_t *);
+int process_args(char **, unsigned int);
 
 #include "lists.h"
 

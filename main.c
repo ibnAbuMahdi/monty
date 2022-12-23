@@ -95,7 +95,7 @@ void handle_file(char *file_path)
 	{
 		l_no++;
 		args = parse_line(buf);
-		if (process_args(args, l_no, front))
+		if (process_args(args, l_no))
 			free_pp((void **) args);
 	}
 	free(buf);
@@ -106,47 +106,18 @@ void handle_file(char *file_path)
  * process_args - processes args of line
  * @args: the args
  * @l_no: line number
- * @front: the front node in list
  * Return: 1 always
  */
 
-int process_args(char **args, unsigned int l_no, stack_t *front)
+int process_args(char **args, unsigned int l_no)
 {
-	int i, size;
 	size_t ac;
-	stack_t *new_node = NULL;
-	instruction_t inst[] = {{"pall", pall}, {"push", push}, {"pint", pint},
-		{"pop", pop}, {"swap", swap}};
 
 	ac = count(args);
 	if (ac == 0)
 		return (1);
-	if (ac > 1)
-	{
-		new_node = malloc(sizeof(stack_t));
-		if (!new_node)
-			malloc_error();
-	}
-	size = sizeof(inst) / sizeof(inst[0]);
-	for (i = 0; i < size; i++)
-	{
-		if (strcmp(args[0], inst[i].opcode) == 0)
-		{
-			if (ac > 1 && !contains_letter(args[1]))
-			{
-				new_node->n = atoi(args[1]);
-				inst[i].f(&new_node, l_no);
-			}
-			else
-			{
-				inst[i].f(&front, l_no);
-			}
-			if (new_node)
-				free(new_node);
-			return (1);
-		}
-	}
-	free(new_node);
+	if (get_func(args, l_no))
+		return (1);
 	invalid_inst(args[0], l_no);
 	return (1);
 }

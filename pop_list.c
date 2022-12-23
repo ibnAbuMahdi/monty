@@ -46,3 +46,21 @@ void swap_dlistint(stack_t **head)
 	(*head)->prev = temp;
 	*head = temp;
 }
+
+/**
+ *
+ */
+
+void add_dlistint(stack_t **head)
+{
+	stack_t *temp;
+
+	temp = *head;
+	(*head)->next->n += (*head)->n;
+	*head = temp->next;
+	(*head)->prev = NULL;
+	free(temp);
+}
+
+
+
