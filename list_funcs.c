@@ -11,9 +11,14 @@
 void push(stack_t **node, unsigned int lno)
 {
 	if (*node == front)
+	{
 		fprintf(stderr, "L%u: usage: push integer\n", lno);
+		exit(EXIT_FAILURE);
+	}
 	else if (*node)
+	{
 		add_dnodeint(&front, (*node)->n);
+	}
 }
 
 /**
@@ -41,9 +46,14 @@ void pint(stack_t **node, unsigned int lno)
 	(void) node;
 
 	if (front)
+	{
 		printf("%d\n", front->n);
+	}
 	else
+	{
 		fprintf(stderr, "L%u: can't pint, stack empty", lno);
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**
@@ -57,13 +67,20 @@ void pop(stack_t **node, unsigned int lno)
 	(void) node;
 
 	if (front)
+	{
 		pop_dlistint(&front);
+	}
 	else
+	{
 		fprintf(stderr, "L%u: can't pop an empty stack", lno);
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**
- *
+ * swap - swaps the top two nodes
+ * @node: address of the node pointer
+ * @lno: line number
  */
 
 void swap(stack_t **node, unsigned int lno)
@@ -71,11 +88,12 @@ void swap(stack_t **node, unsigned int lno)
 	(void) node;
 
 	if (dlistint_len(front) > 1)
+	{
 		swap_dlistint(&front);
+	}
 	else
+	{
 		fprintf(stderr, "L%u: can't swap, stack too short", lno);
+		exit(EXIT_FAILURE);
+	}
 }
-
-
-
-
