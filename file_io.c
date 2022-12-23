@@ -5,7 +5,7 @@
 #include <stddef.h>
 
 /**
- * getline - gets a line from stream file
+ * _getline - gets a line from stream file
  * @line: the address of the buffer to store the data obtained
  * @n: the address of the number of data retrived
  * @file: the address of the file

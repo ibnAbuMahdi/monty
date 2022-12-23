@@ -120,7 +120,7 @@ int process_args(char **args, unsigned int l_no, stack_t *front)
 
 	ac = count(args);
 	if (ac == 0)
-		invalid_inst("", l_no);
+		return (1);
 	if (ac > 1)
 	{
 		new_node = malloc(sizeof(stack_t));
