@@ -91,7 +91,7 @@ void handle_file(char *file_path)
 	FILE *stream = fopen(file_path, "r");
 
 	front = NULL;
-	while ((readno = getline(&buf, &n, stream)) > 0)
+	while ((readno = _getline(&buf, &n, stream)) > 0)
 	{
 		l_no++;
 		args = parse_line(buf);

@@ -12,7 +12,7 @@
  * Return: the number of data retrieved
  */
 
-size_t getline(char **line, size_t *n, FILE *file)
+size_t _getline(char **line, size_t *n, FILE *file)
 {
 	size_t max;
 	size_t i;

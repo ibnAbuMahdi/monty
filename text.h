@@ -47,7 +47,7 @@ void *_realloc(void *, size_t, size_t);
 void free_pp(void **);
 
 /* file_io.c */
-size_t getline(char **, size_t *, FILE *);
+size_t _getline(char **, size_t *, FILE *);
 char **parse_line(char *);
 
 /* tokenization.c */
