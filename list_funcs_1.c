@@ -13,7 +13,7 @@ int get_func(char **args, unsigned int lno)
 	int i, size;
 	stack_t *new_node = NULL;
 	instruction_t inst[] = {{"pall", pall}, {"push", push}, {"pint", pint},
-		{"pop", pop}, {"swap", swap}, {"nop", nop}, {"add", add}};
+		{"pop", pop}, {"swap", swap}, {"nop", nop}, {"add", add}, {"sub", sub}};
 
 	if (count(args) > 1)
 	{
@@ -45,7 +45,9 @@ int get_func(char **args, unsigned int lno)
 }
 
 /**
- *
+ * add - adds the top two nodes
+ * @node: address of the node pointer
+ * @lno: the line number
  */
 
 void add(stack_t **node, unsigned int lno)
@@ -64,7 +66,9 @@ void add(stack_t **node, unsigned int lno)
 }
 
 /**
- *
+ * nop - do nothing opcode
+ * @node: address of the head pointer
+ * @lno: the line number
  */
 
 void nop(stack_t **node, unsigned int lno)
@@ -72,6 +76,27 @@ void nop(stack_t **node, unsigned int lno)
 	(void) node;
 	(void) lno;
 }
+
+/**
+ *
+ */
+
+void sub(stack_t **node, unsigned int lno)
+{
+	(void) node;
+
+	if (dlistint_len(front) > 1)
+	{
+		sub_dlistint(&front);
+	}
+	else
+	{
+		fprintf(stderr, "L%u: can't sub, stack too short\n", lno);
+		exit(EXIT_FAILURE);
+	}
+}
+
+
 
 
 

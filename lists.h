@@ -22,6 +22,8 @@ void swap_dlistint(stack_t **);
 
 void add_dlistint(stack_t **);
 
+void sub_dlistint(stack_t **);
+
 stack_t *get_dnodeint_at_index(stack_t *, unsigned int);
 
 int sum_dlistint(stack_t *);

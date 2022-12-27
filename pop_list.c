@@ -62,5 +62,17 @@ void add_dlistint(stack_t **head)
 	free(temp);
 }
 
+/**
+ *
+ */
 
+void sub_dlistint(stack_t **head)
+{
+	stack_t *temp;
 
+	temp = *head;
+	(*head)->next->n -= (*head)->n;
+	*head = temp->next;
+	(*head)->prev = NULL;
+	free(temp);
+}
