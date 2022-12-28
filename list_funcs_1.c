@@ -14,7 +14,8 @@ int get_func(char **args, unsigned int lno)
 	stack_t *new_node = NULL;
 	instruction_t inst[] = {{"pall", pall}, {"push", push}, {"pint", pint},
 		{"pop", pop}, {"swap", swap}, {"nop", nop}, {"add", add}, {"sub", sub},
-		{"div", _div}, {"mul", mul}, {"mod", mod}, {"pchar", pchar}};
+		{"div", _div}, {"mul", mul}, {"mod", mod}, {"pchar", pchar}, {"pstr", pstr},
+		{"rotl", rotl}, {"rotr", rotr}};
 
 	if (count(args) > 1)
 	{
@@ -191,4 +192,79 @@ void pchar(stack_t **node, unsigned int lno)
 		exit(EXIT_FAILURE);
 	}
 }
+
+/**
+ *
+ */
+
+void pstr(stack_t **node, unsigned int lno)
+{
+	stack_t *temp = NULL;
+	
+	(void) node;
+	(void) lno;
+	temp = front;
+	while (temp && (temp->n < 128 && temp->n > 0))
+	{
+		printf("%c", temp->n);
+		temp = temp->next;
+	}
+	printf("\n");
+}
+
+/**
+ *
+ */
+
+void rotl(stack_t **node, unsigned int lno)
+{
+	stack_t *first, *second, *last;
+	
+	(void) node;
+	(void) lno;
+	first = front;
+	if (dlistint_len(front) > 1)
+	{
+		second = first->next;
+		while (first->next)
+		{
+			last = first->next;
+			first = first->next;
+		}
+		last->next = front;
+		front->prev = last;
+		front->next = NULL;
+		front = second;
+		front->prev = NULL;
+	}
+}
+
+/**
+ *
+ */
+
+void rotr(stack_t **node, unsigned int lno)
+{
+	stack_t *first, *sLast, *last;
+
+	(void) node;
+	(void) lno;
+	if (dlistint_len(front) > 1)
+	{
+		first = front;
+		last = front;
+		while (last->next)
+		{
+			sLast = last;
+			last = last->next;
+		}
+		sLast->next = NULL;
+		last->next = first;
+		first->prev = last;
+		front = last;
+		front->prev = NULL;
+	}
+}
+
+
 
