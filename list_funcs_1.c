@@ -160,7 +160,7 @@ void mod(stack_t **node, unsigned int lno)
 	}
 	else
 	{
-		fprintf(stderr, "L%u: can't mod, stack too short", lno);
+		fprintf(stderr, "L%u: can't mod, stack too short\n", lno);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -175,19 +175,19 @@ void pchar(stack_t **node, unsigned int lno)
 
 	if (dlistint_len(front) > 0)
 	{
-		if (front->n < 256)
+		if (front->n < 128 && front->n > 0)
 		{
 			printf("%c\n", front->n);
 		}
 		else
 		{
-			fprintf(stderr, "L%u: can't pchar, value out of range", lno);
+			fprintf(stderr, "L%u: can't pchar, value out of range\n", lno);
 			exit(EXIT_FAILURE);
 		}
 	}
 	else
 	{
-		fprintf(stderr, "L%u: can't pchar, stack empty", lno);
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", lno);
 		exit(EXIT_FAILURE);
 	}
 }
