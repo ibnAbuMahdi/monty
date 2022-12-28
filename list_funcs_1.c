@@ -13,7 +13,8 @@ int get_func(char **args, unsigned int lno)
 	int i, size;
 	stack_t *new_node = NULL;
 	instruction_t inst[] = {{"pall", pall}, {"push", push}, {"pint", pint},
-		{"pop", pop}, {"swap", swap}, {"nop", nop}, {"add", add}, {"sub", sub}};
+		{"pop", pop}, {"swap", swap}, {"nop", nop}, {"add", add}, {"sub", sub},
+		{"div", _div}, {"mul", mul}};
 
 	if (count(args) > 1)
 	{
@@ -96,8 +97,48 @@ void sub(stack_t **node, unsigned int lno)
 	}
 }
 
+/**
+ *
+ */
 
+void _div(stack_t **node, unsigned int lno)
+{
+	(void) node;
 
+	if (dlistint_len(front) > 1)
+	{
+		if (front->n == 0)
+		{
+			fprintf(stderr, "L%u: division by zero\n", lno);
+			exit(EXIT_FAILURE);
+		}
+		div_dlistint(&front);
+	}
+	else
+	{
+		fprintf(stderr, "L%u: can't div, stack too short\n", lno);
+		exit(EXIT_FAILURE);
+	}
+}
 
+/**
+ *
+ */
+
+void mul(stack_t **node, unsigned int lno)
+{
+	(void) node;
+
+	if (dlistint_len(front) > 1)
+	{
+		mul_dlistint(&front);
+	}
+	else
+	{
+		fprintf(stderr, "L%u: can't mul, stack too short\n", lno);
+		exit(EXIT_FAILURE);
+	}
+
+}
 
 
