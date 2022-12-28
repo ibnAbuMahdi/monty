@@ -14,7 +14,7 @@ int get_func(char **args, unsigned int lno)
 	stack_t *new_node = NULL;
 	instruction_t inst[] = {{"pall", pall}, {"push", push}, {"pint", pint},
 		{"pop", pop}, {"swap", swap}, {"nop", nop}, {"add", add}, {"sub", sub},
-		{"div", _div}, {"mul", mul}};
+		{"div", _div}, {"mul", mul}, {"mod", mod}, {"pchar", pchar}};
 
 	if (count(args) > 1)
 	{
@@ -141,4 +141,54 @@ void mul(stack_t **node, unsigned int lno)
 
 }
 
+/**
+ *
+ */
+
+void mod(stack_t **node, unsigned int lno)
+{
+	(void) node;
+
+	if (dlistint_len(front) > 1)
+	{
+		if (front->n == 0)
+		{
+			fprintf(stderr, "L%u: division by zero\n", lno);
+			exit(EXIT_FAILURE);
+		}
+		mod_dlistint(&front);
+	}
+	else
+	{
+		fprintf(stderr, "L%u: can't mod, stack too short", lno);
+		exit(EXIT_FAILURE);
+	}
+}
+
+/**
+ *
+ */
+
+void pchar(stack_t **node, unsigned int lno)
+{
+	(void) node;
+
+	if (dlistint_len(front) > 0)
+	{
+		if (front->n < 256)
+		{
+			printf("%c\n", front->n);
+		}
+		else
+		{
+			fprintf(stderr, "L%u: can't pchar, value out of range", lno);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		fprintf(stderr, "L%u: can't pchar, stack empty");
+		exit(EXIT_FAILURE);
+	}
+}
 

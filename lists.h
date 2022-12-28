@@ -28,6 +28,8 @@ void div_dlistint(stack_t **);
 
 void mul_dlistint(stack_t **);
 
+void mod_dlistint(stack_t **);
+
 stack_t *get_dnodeint_at_index(stack_t *, unsigned int);
 
 int sum_dlistint(stack_t *);
