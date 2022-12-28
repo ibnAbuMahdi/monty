@@ -187,7 +187,7 @@ void pchar(stack_t **node, unsigned int lno)
 	}
 	else
 	{
-		fprintf(stderr, "L%u: can't pchar, stack empty");
+		fprintf(stderr, "L%u: can't pchar, stack empty", lno);
 		exit(EXIT_FAILURE);
 	}
 }
